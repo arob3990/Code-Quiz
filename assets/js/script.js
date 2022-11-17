@@ -85,6 +85,7 @@ var questions = [
 
 ]
 
+var index =0;
 function renderNewQuestion(index){
     if(index===4){
         quiz.style.display="none"
@@ -92,31 +93,30 @@ function renderNewQuestion(index){
         results.style.display="block"
     }
 
-    var index =0;
+    
     console.log(index)
     introSection.style.display="none";
-    var title = document.createElement("h1");
-    title.innerHTML = questions[index].title
-    var listOfAnswers = document.createElement("ol");
+    var questionName = document.querySelector("h1");
+    questionName.innerHTML = questions[index].title;
+    var listOfAnswers = document.querySelector("ol");
     for (var i=0;i<4;i++){
-        var singleAnswerLi = document.createElement("li");
-        var singleAnswerButton = document.createElement("button");
-        // // var singleAnswer = quiz.appendChild(listofAnswers).createElement("button")
-        // var singleAnswer = document.createElement("button")
-        singleAnswerLi.append(singleAnswerButton).innerHTML = questions[index].answers[i].label
+        // var singleAnswer = document.createElement("li");
+        // var singleAnswer = quiz.appendChild(listofAnswers).createElement("button")
+        var singleAnswer = document.querySelectorAll(".question-button")
+        singleAnswer.innerHTML = questions[index].answers[i].label
         if(questions[index].answers[i].isCorrect){
-            singleAnswerLi.addEventListener("click",function(){
+            singleAnswer.addEventListener("click",function(){
                 score+=10
-                renderNewQuestion(index++) 
+                renderNewQuestion(index+1) 
             }) 
         } else {
-            singleAnswerLi.addEventListener("click",function(){
-                renderNewQuestion(index++)
+            singleAnswer.addEventListener("click",function(){
+                renderNewQuestion(index+1)
             }) 
         }
-        listOfAnswers.appendChild(singleAnswerLi);
+        listOfAnswers.appendChild(singleAnswer);
     }
-    quiz.appendChild(title);
+    quiz.appendChild(questionName);
     quiz.appendChild(listOfAnswers);
     quiz.style.display="block";
 }
