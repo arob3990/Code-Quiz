@@ -99,19 +99,22 @@ function renderNewQuestion(index){
     title.innerHTML = questions[index].title
     var listOfAnswers = document.createElement("ol");
     for (var i=0;i<4;i++){
-        var singleAnswer = document.createElement("li");
-        singleAnswer.innerHTML = questions[index].answers[i].label
+        var singleAnswerLi = document.createElement("li");
+        var singleAnswerButton = document.createElement("button");
+        // // var singleAnswer = quiz.appendChild(listofAnswers).createElement("button")
+        // var singleAnswer = document.createElement("button")
+        singleAnswerLi.append(singleAnswerButton).innerHTML = questions[index].answers[i].label
         if(questions[index].answers[i].isCorrect){
-            singleAnswer.addEventListener("click",function(){
+            singleAnswerLi.addEventListener("click",function(){
                 score+=10
-                renderNewQuestion(index++)
+                renderNewQuestion(index++) 
             }) 
         } else {
-            singleAnswer.addEventListener("click",function(){
+            singleAnswerLi.addEventListener("click",function(){
                 renderNewQuestion(index++)
             }) 
         }
-        listOfAnswers.appendChild(singleAnswer);
+        listOfAnswers.appendChild(singleAnswerLi);
     }
     quiz.appendChild(title);
     quiz.appendChild(listOfAnswers);
