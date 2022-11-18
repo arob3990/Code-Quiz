@@ -13,7 +13,7 @@ var startButton = document.getElementById("start");
 startButton.addEventListener("click", function(){
     // startTimer();
     introSection.style.display = "none";
-    renderNewQuestion();
+    renderNewQuestion(0);
 })
 
 
@@ -85,40 +85,55 @@ var questions = [
 
 ]
 
+
+
 var index =0;
 function renderNewQuestion(index){
-    if(index===4){
+    if(index===3){
         quiz.style.display="none"
-        results.innerHTML="score" + score
+        results.innerHTML="Score " + score
         results.style.display="block"
     }
 
     
     console.log(index)
     introSection.style.display="none";
-    var questionName = document.querySelector("h1");
+    var questionName = document.createElement("h1");
     questionName.innerHTML = questions[index].title;
-    var listOfAnswers = document.querySelector("ol");
+    var listOfAnswers = document.createElement("ol");
     for (var i=0;i<4;i++){
         // var singleAnswer = document.createElement("li");
         // var singleAnswer = quiz.appendChild(listofAnswers).createElement("button")
-        var singleAnswer = document.querySelectorAll(".question-button")
+        var singleAnswerLi = document.createElement("li");
+        var singleAnswer = document.createElement("button")
         singleAnswer.innerHTML = questions[index].answers[i].label
         if(questions[index].answers[i].isCorrect){
             singleAnswer.addEventListener("click",function(){
-                score+=10
-                renderNewQuestion(index+1) 
+                score+=10;
+                // getElementById(quiz).innerHTML = "";
+                // renderNewQuestion(index+1);
+                clearQuestion();
             }) 
         } else {
             singleAnswer.addEventListener("click",function(){
-                renderNewQuestion(index+1)
+                // getElementById(quiz).innerHTML = "";
+                // renderNewQuestion(index+1);
+                clearQuestion();
             }) 
         }
-        listOfAnswers.appendChild(singleAnswer);
+        singleAnswerLi.appendChild(singleAnswer)
+        listOfAnswers.appendChild(singleAnswerLi);
     }
+    console.log("score = ",score);
     quiz.appendChild(questionName);
     quiz.appendChild(listOfAnswers);
     quiz.style.display="block";
+    console.log("question is number",index)
+    
+}
+function clearQuestion(){
+    document.getElementById("quiz").innerHTML="";
+    renderNewQuestion(index+1);
 }
 
 
