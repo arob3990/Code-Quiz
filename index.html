@@ -6,7 +6,7 @@
     <body>
         <!-- intro and start the quiz -->
         <main id="intro">
-            <a id="highscores">View highscores</a>
+            <button id="showHighscores">View highscores</button>
             <section>
                 <h1>Coding Quiz Challenge</h1>
                 <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 15 seconds!
@@ -17,18 +17,29 @@
       
         <!-- Quiz -->
         <div id="quiz">
-            <footer id="question-result"></footer>
+        
+        </div>
+        <div>
+
+        <h3 id="questionresult"></h3>
+
         </div>
         <div>
             <h2 id="timer"></h2>
         </div>
         <!-- Show Quiz result -->
-        <section id="results">
-
+        <section id="results" style="display:none;">
+            <h2>Enter your initials</h2>
+            <input id="initials"/>
+            <button id="enterInitials">Submit</button>
         </section>
         <!-- Show highscores -->
-        <section >
+        <section id="highscores" style="display:none;">
+            <h2>Highscores</h2>
+            <ul id="listOfHighscores">
 
+            </ul>
+            <button id="goHome">Go home</button>
         </section>
         <script src="./assets/js/script.js"></script>
     </body>
