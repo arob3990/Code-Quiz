@@ -5,7 +5,7 @@ Repository for Module 4 Homework to create website code quiz
 This webpage was built utilizing javascript and WebAPI in order to build a dynmaic quiz. The quiz contains 10 questions and the ability to store your results along with access to the high scores of the webpage. If a question is answered correctly, you are awarded 10 points. However, if you answer incorrectly, you will be penalized 10 seconds from the starting 60 seconds.
 
 ## Installation
-Webpage can be accessed using this link:
+Webpage can be accessed using this link: https://arob3990.github.io/Code-Quiz/
 
 ## Usage
 From the main landing page, click on the Start Quiz button to begin the quiz.
