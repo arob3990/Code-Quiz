@@ -250,19 +250,23 @@ function renderNewQuestion(){
     var questionName = document.createElement("h1");
     questionName.innerHTML = questions[index].title;
     var listOfAnswers = document.createElement("ol");
+    listOfAnswers.setAttribute("class","ml-5")
     for (var i=0;i<4;i++){
         var singleAnswerLi = document.createElement("li");
         var singleAnswer = document.createElement("button")
+        singleAnswer.setAttribute("class", "btn btn-outline-primary")
         singleAnswer.innerHTML = questions[index].answers[i].label
         if(questions[index].answers[i].isCorrect){
             singleAnswer.addEventListener("click",function(){
                 score+=10;
                 questionResult.innerHTML = "CORRECT";
+                questionResult.setAttribute("class"," text-success container");
                 clearQuestion();
             }) 
         } else {
             singleAnswer.addEventListener("click",function(){
                 questionResult.innerHTML = "INCORRECT";
+                questionResult.setAttribute("class","text-danger container");
                 clearQuestion();
                 count -= 10;
             }) 
@@ -361,9 +365,10 @@ showHighscores.addEventListener('click',function(){
     results.style.display="none";
     questionResult.style.display ="none";
     listOfHighscores.innerHTML="" //empty the scores
-    // allHighScores.sort(function(a,b){return b.points - a.points}) //sort highscores in descending order
+    allHighScores.sort(function(a,b){return b.points - a.points}) //sort highscores in descending order
     for(var i=0;i<allHighScores.length;i++){
         var newScoreElement= document.createElement('li');
+        newScoreElement.setAttribute("class","list-group-item")
         newScoreElement.innerHTML=allHighScores[i].initials + " "+allHighScores[i].points
         listOfHighscores.append(newScoreElement); //append each score to the list
     }
