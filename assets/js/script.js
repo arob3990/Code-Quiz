@@ -1,6 +1,5 @@
 var introSection = document.getElementById("intro");
 var quiz = document.getElementById("quiz");
-quiz.style.display = "none";
 var timerEl = document.getElementById("timer");
 var count = 60;
 var questionResult = document.getElementById("questionresult")
@@ -17,6 +16,7 @@ var goHomeButton = document.getElementById("goHome")
 var endGame = false
 // results.innerHTML=score
 
+quiz.style.display = "none";
 results.style.display="none"
 
 var allHighScores = JSON.parse(localStorage.getItem('highscores'))
