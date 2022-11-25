@@ -22,11 +22,19 @@ results.style.display="none"
 var allHighScores = JSON.parse(localStorage.getItem('highscores'))
 
 var startButton = document.getElementById("start");
+var index =0;
 endGame = false;
 startButton.addEventListener("click", function(){
-    startTimer();
+    quiz.style.display="block";
+    results.style.display="none";
+    timerEl.style.display="block";
     introSection.style.display = "none";
-    renderNewQuestion(0);
+    index =0;
+    score=0;
+    count=60;
+    endGame=false;
+    startTimer();
+    renderNewQuestion();
 })
 
 
@@ -225,23 +233,10 @@ var questions = [
 
 ]
 
-
-
-// function displayResults(){
-//     // var resultsButton = document.createElement("button");
-//     // resultsButton.innerHTML = 'CLICK HERE FOR RESULTS';
-//     results.style.display="block"
-
-
-
-var index =0;
 function renderNewQuestion(){
-    if(index===10){
-    //     // quiz.style.display="none"
-    //     // results.innerHTML="Score " + score
-    //     // results.style.display="block"
-    //     // clearInterval(interval)
+    if(index>=10){
     showResults()
+    return
     }
     
     
@@ -282,6 +277,7 @@ function renderNewQuestion(){
     
 }
 function showResults(){
+    questionResult.textContent= "";
     endGame = true;
     timerEl.style.display="none" //hide timer
     //create a new p tag
@@ -291,14 +287,14 @@ function showResults(){
     resultPTag.innerHTML=score + " points";
     results.appendChild(resultPTag);
     results.style.display="block";
-    questionResult.style.display="none";
+    
 }
 
 function clearQuestion(){
     document.getElementById("quiz").innerHTML="";
     index++;
-    renderNewQuestion(index);
-    if(index > 11){
+    renderNewQuestion();
+    if(index > 9){
         showResults()
     }
     //if index is bigger than the length of the array, then end it
@@ -317,22 +313,16 @@ function startTimer(){
         quiz.style.display='none';
         results.style.display='block';
         timerEl.style.display='none';
+        timerEl.textContent= "";
         clearInterval(interval); // clear timer
     }
     if(endGame){
         quiz.style.display='none';
         results.style.display='block';
         timerEl.style.display='none';
+        timerEl.textContent = "";
         clearInterval(interval); // clear timer
     }    
-
-    // if (count <= 0){
-    //   clearInterval(interval);
-    //   document.getElementById('timer').innerHTML='Done';
-    //   // or...
-    //   quiz.style.display ="none";
-    //   results.style.display="block"
-    // }
   }, 1000);
 }
 
@@ -351,7 +341,6 @@ initialsButton.addEventListener("click",function(){
     initialsInput.value =""//reset input value
     results.style.display="none";
     intro.style.display="block";
-    questionResult.style.display = "none";
     showHighscores.style.display="block"; //show button
     
 })
@@ -363,7 +352,6 @@ showHighscores.addEventListener('click',function(){
     intro.style.display="none";
     quiz.style.display="none";
     results.style.display="none";
-    questionResult.style.display ="none";
     listOfHighscores.innerHTML="" //empty the scores
     allHighScores.sort(function(a,b){return b.points - a.points}) //sort highscores in descending order
     for(var i=0;i<allHighScores.length;i++){
@@ -383,7 +371,6 @@ goHomeButton.addEventListener("click",function(){
     timerEl.innerHTML="Timer"
     showHighscores.style.display="block";
     intro.style.display="block";
-    timerEl.style.display="block";
-    questionResult.style.display= "none";
-    index=0;
+    timerEl.style.display="none";
+   
 })
